@@ -35,8 +35,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication'
+    'authentication',
+    'mozilla_django_oidc',
 ]
+
+AUTHENTICATION_BACKENDS = (
+'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,3 +127,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "index"
+
+# Your Okta domain address
+OKTA_DOMAIN =  "trial-xxx.okta.com"
+# Your Okta application’s client ID
+OIDC_RP_CLIENT_ID = "xxx"
+# Your Okta application’s client secret
+OIDC_RP_CLIENT_SECRET = "xxx"
+OIDC_RP_SIGN_ALGO = "RS256"
+# The OIDC authorization endpoint
+OIDC_OP_AUTHORIZATION_ENDPOINT = f"https://{OKTA_DOMAIN}/oauth2/default/v1/authorize"
+# The OIDC token endpoint
+OIDC_RP_TOKEN_ENDPOINT = f"https://{OKTA_DOMAIN}/oauth2/default/v1/token"
+# The OIDC userinfo endpoint
+OIDC_OP_USER_ENDPOINT = f"https://{OKTA_DOMAIN}/oauth2/default/v1/userinfo"
+# The OIDC token endpoint
+OIDC_OP_TOKEN_ENDPOINT = f"https://{OKTA_DOMAIN}/oauth2/default/v1/token"
+# The OIDC JWKS endpoint
+OIDC_OP_JWKS_ENDPOINT = f"https://{OKTA_DOMAIN}/oauth2/default/v1/keys"

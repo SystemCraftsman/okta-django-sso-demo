@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <h2>Log In</h2>
 <img src="{% static '/assets/images/logo.png' %}"  alt="Insurance Co"/>
-<form method="post">
 {% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Log In</button>
-</form>
+<br />
+<a href="{% url 'oidc_authentication_init' %}">
+    <button type="button">Log In with SSO</button>
+</a>
